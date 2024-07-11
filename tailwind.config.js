@@ -21,7 +21,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        'primary': '#F2682A'
+        'primary': '#F2682A',
+        'bgCol': '#F6F6F6',
       },
       keyframes: {
         "accordion-down": {

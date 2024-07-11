@@ -3,8 +3,8 @@ import image1 from '../../../../assets/slideshow-v1-img1.webp';
 import { Button } from '../../../ui/button';
 const Banner: FC = () => {
     return (
-        <div className='bg-bgCol'>
-            <div className='wrapper  min-h-[90vh]'>
+        <div className=' bg-bgCol'>
+            <div className='min-h-[90vh] wrapper'>
                 <div className='flex items-center justify-evenly'>
                     <div>
                         <div className='space-y-4'>
@@ -19,6 +19,17 @@ const Banner: FC = () => {
                     </div>
                 </div>
             </div>
+            {/* 
+            <div className='grid grid-cols-2 gap-6'>
+                <div className='bg-bgCol flex items-center justify-center px-10 py-10'>
+                    <p>Up To 40% Off</p>
+                    <h4>Fleece Gloves</h4>
+                </div>
+                <div className='bg-bgCol flex items-center justify-center px-10 py-10'>
+                    <p>Flat 30%</p>
+                    <h4>Special Chair</h4>
+                </div>
+            </div> */}
         </div>
     );
 };

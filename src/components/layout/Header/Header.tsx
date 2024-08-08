@@ -31,7 +31,7 @@ const Header: FC = () => {
                     <img src={logo} alt="camp gear's logo" />
                 </Link>
             </div>
-            <div className='flex items-center gap-8'>
+            <div className='md:flex items-center gap-8 hidden'>
                 {
                     routes.map((route, index) => {
                         return (

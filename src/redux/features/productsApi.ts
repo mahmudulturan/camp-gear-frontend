@@ -16,7 +16,7 @@ export interface IInventory {
 
 export interface IProduct {
     _id: string;
-    title: string;
+    name: string;
     description: string;
     price: IPrice;
     category: string;

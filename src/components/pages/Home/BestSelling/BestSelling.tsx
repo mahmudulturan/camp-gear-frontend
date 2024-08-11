@@ -16,7 +16,7 @@ const BestSelling: FC = () => {
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
                 {
-                    data?.data.map((product: IProduct) => (<ProductCard product={product} />))
+                    data?.data.slice(0, 8).map((product: IProduct) => (<ProductCard product={product} />))
                 }
             </div>
         </div>

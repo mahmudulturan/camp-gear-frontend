@@ -4,9 +4,9 @@ import { Button } from '../../../ui/button';
 const Banner: FC = () => {
     return (
         <div className=' bg-bgCol'>
-            <div className='min-h-[90vh] wrapper'>
-                <div className='flex items-center justify-evenly'>
-                    <div>
+            <div style={{minHeight: 'calc(100vh - 116px)'}} className='wrapper'>
+                <div style={{minHeight: 'calc(100vh - 116px)'}}  className='flex items-center justify-evenly '>
+                    <div  className=''>
                         <div className='space-y-4'>
                             <h1 className='text-7xl font-bold'>Transit Compass</h1>
                             <p className='text-5xl font-light'> <span className='text-primary font-normal'>40%</span> sell off</p>
@@ -19,8 +19,8 @@ const Banner: FC = () => {
                     </div>
                 </div>
             </div>
-            {/* 
-            <div className='grid grid-cols-2 gap-6'>
+            
+            {/* <div className='grid grid-cols-2 gap-6 my-10'>
                 <div className='bg-bgCol flex items-center justify-center px-10 py-10'>
                     <p>Up To 40% Off</p>
                     <h4>Fleece Gloves</h4>

@@ -8,16 +8,20 @@ import image4 from '../../../../assets/mock-item-images/product15.webp';
 
 const images = [image1, image2, image3, image4];
 
-const ProductCard: FC<{product: IProduct}> = ({product}) => {
+const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
     return (
-        <div className=''>
-            <div className='bg-[#EFEDEE] relative overflow-hidden group cursor-pointer'>
+        <div className='group'>
+            <div className='bg-[#EFEDEE] relative overflow-hidden cursor-pointer'>
                 <img src={images[0]} alt={product?.name} className='object-cover' />
-                <button className='w-full text-center hover:text-primary bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300'>Add to cart</button>
+                <button className='w-full text-center hover:text-primary bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 left-0'>View Details</button>
             </div>
             <div className='mt-4'>
                 <h6 className='font-medium cursor-pointer hover:text-primary duration-300'>{product?.name}</h6>
-                <p className='font-semibold text-primary'>$45{product?.price?.amount}</p>
+                <div className='relative overflow-hidden'>
+                    <p className='font-semibold text-primary'>$45{product?.price?.amount}</p>
+                    
+                    <button className='uppercase font-medium text-xs border-b-[1.5px] border-primary pb-0.5 text-primary bg-white absolute bottom-0 left-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 pt-0.5'>Add to cart</button>
+                </div>
             </div>
         </div>
     );

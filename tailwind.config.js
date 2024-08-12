@@ -20,6 +20,9 @@ module.exports = {
       },
     },
     extend: {
+      backgroundImage: {
+        categorySectionBg: "linear-gradient(transparent 50%, #000000b0 100%)"
+      },
       colors: {
         'primary': '#F2682A',
         'bgCol': '#F6F6F6',

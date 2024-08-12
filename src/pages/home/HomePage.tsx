@@ -4,6 +4,7 @@ import FAQSection from '../../components/pages/Home/FAQSection/FAQSection';
 import BestSelling from '../../components/pages/Home/BestSelling/BestSelling';
 import Categories from '../../components/pages/Home/Categories/Categories';
 import FeaturedProducts from '../../components/pages/Home/FeaturedProducts/FeaturedProducts';
+import DiscountBanner from '../../components/pages/Home/DiscountBanner/DiscountBanner';
 
 const HomePage: FC = () => {
     return (
@@ -12,6 +13,7 @@ const HomePage: FC = () => {
             <BestSelling />
             <Categories />
             <FeaturedProducts />
+            <DiscountBanner />
             <FAQSection />
         </div>
     );

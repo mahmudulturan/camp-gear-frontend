@@ -7,7 +7,10 @@ const FAQSection: FC = () => {
     return (
         <div className='wrapper'>
             {/*  section header  */}
-            <SectionHeader title="Frequently Asked Questions" />
+            <div className='my-10'>
+                <SectionHeader title="Frequently Asked Questions" />
+                <p className='text-textGray text-center my-4'>Helpful Hints & Clarifications</p>
+            </div>
             {/*  faq questions  */}
             <div>
                 <Accordion type="single" collapsible className="w-full">

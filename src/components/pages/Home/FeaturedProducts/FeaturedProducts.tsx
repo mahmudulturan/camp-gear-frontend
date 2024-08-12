@@ -11,6 +11,7 @@ const FeaturedProducts: FC = () => {
         <div className='wrapper'>
             <div className='my-10'>
                 <SectionHeader title="Featured Products" />
+                <p className='text-textGray text-center my-4'>Exclusive Selection of Our Best Camping Gear</p>
             </div>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6'>
                 {

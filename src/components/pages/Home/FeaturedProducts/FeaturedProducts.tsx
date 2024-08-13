@@ -2,6 +2,7 @@ import { FC } from 'react';
 import SectionHeader from '../../../ui/section-header';
 import { IProduct, useGetProductsQuery } from '../../../../redux/features/productsApi';
 import ProductCard from '../BestSelling/ProductCard';
+import { Button } from '../../../ui/button';
 
 const FeaturedProducts: FC = () => {
     const { data, isLoading } = useGetProductsQuery(undefined);
@@ -17,6 +18,9 @@ const FeaturedProducts: FC = () => {
                 {
                     data?.data.slice(0, 8).map((product: IProduct) => (<ProductCard product={product} />))
                 }
+            </div>
+            <div className='text-center my-10'>
+                <Button variant={"reverse"}>View All</Button>
             </div>
         </div>
     );

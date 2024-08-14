@@ -2,9 +2,10 @@ import { FC, useState } from 'react';
 import { Input } from '../../components/ui/input';
 import { FaSearch } from 'react-icons/fa';
 import SectionHeader from '../../components/ui/section-header';
-import { IProduct, useGetProductsQuery } from '../../redux/features/productsApi';
-import ProductCard from '../../components/shared/ProductsCard/ProductCard';
+import { useGetProductsQuery } from '../../redux/features/productsApi';
+
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../components/ui/select';
+import AllProducts from './components/AllProducts/AllProducts';
 
 
 const ProductsPage: FC = () => {
@@ -43,11 +44,8 @@ const ProductsPage: FC = () => {
                     </Select>
                 </div>
             </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-10 mb-20'>
-                {
-                    data?.data.slice(0, 8).map((product: IProduct) => (<ProductCard product={product} />))
-                }
-            </div>
+            <AllProducts products={data?.data} />
+            
         </div>
     );
 };

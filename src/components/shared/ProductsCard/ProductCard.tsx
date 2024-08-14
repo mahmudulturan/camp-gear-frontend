@@ -12,11 +12,11 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
     return (
         <div className='group'>
             <div className='bg-[#EFEDEE] relative overflow-hidden cursor-pointer'>
-                <img src={images[0]} alt={product?.name} className='object-cover' />
+                <img src={images[0]} alt={product?.title} className='object-cover' />
                 <button className='w-full text-center hover:text-primary bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 left-0'>View Details</button>
             </div>
             <div className='mt-4'>
-                <h6 className='font-medium cursor-pointer hover:text-primary duration-300'>{product?.name}</h6>
+                <h6 className='font-medium cursor-pointer hover:text-primary duration-300'>{product?.title}</h6>
                 <div className='relative overflow-hidden'>
                     <p className='font-semibold text-primary'>$45{product?.price?.amount}</p>
                     

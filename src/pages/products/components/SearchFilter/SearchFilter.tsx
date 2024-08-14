@@ -1,7 +1,7 @@
-import { Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectLabel, SelectItem } from '@radix-ui/react-select';
 import React, { FC } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { Input } from '../../../../components/ui/input';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../../components/ui/select';
 
 type SearchFilterProps = {
     setSortValue: React.Dispatch<React.SetStateAction<string>>

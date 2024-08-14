@@ -11,7 +11,7 @@ const PaginationButtons: FC<TPaginationButtonsProps> = ({ page, setPage, totalPa
 
     return (
         <div className='my-10 flex items-center justify-end'>
-            <div className='flex items-center gap-3'>
+            <div className='flex items-center gap-3 flex-wrap'>
                 <Button onClick={() => page > 1 && setPage(page - 1)} variant={"outline"} className='h-10 px-6'>Prev</Button>
                 {
                     [...Array(totalPages)].map((_, index) => (

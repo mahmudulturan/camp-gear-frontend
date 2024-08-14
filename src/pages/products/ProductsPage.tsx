@@ -18,9 +18,9 @@ const ProductsPage: FC = () => {
     const totalPages = 5;
     
     if (isLoading) return <div>Loading...</div>;
-    console.log(sortValue);
+
     return (
-        <div className='wrapper'>
+        <div className='wrapper mb-20'>
             <div className='my-10'>
                 <SectionHeader title="All Products" />
                 <p className='text-textGray text-center my-4'>Here is a list of all products</p>

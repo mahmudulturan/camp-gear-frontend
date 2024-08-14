@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import image1 from '../../../../assets/slideshow-v1-img1.webp';
-import { Button } from '../../../ui/button';
+import { Button } from '../../../../components/ui/button';
 const Banner: FC = () => {
     return (
         <div className=' bg-bgCol'>

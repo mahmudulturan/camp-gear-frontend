@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import { IProduct } from '../../../../redux/features/productsApi';
+import { IProduct } from '../../../redux/features/productsApi';
 
-import image1 from '../../../../assets/mock-item-images/produc5.webp';
-import image2 from '../../../../assets/mock-item-images/product12_5ad78891-a8aa-4fbf-868e-91c6a471d073.webp';
-import image3 from '../../../../assets/mock-item-images/product14.1.webp';
-import image4 from '../../../../assets/mock-item-images/product15.webp';
+import image1 from '../../../assets/mock-item-images/produc5.webp';
+import image2 from '../../../assets/mock-item-images/product12_5ad78891-a8aa-4fbf-868e-91c6a471d073.webp';
+import image3 from '../../../assets/mock-item-images/product14.1.webp';
+import image4 from '../../../assets/mock-item-images/product15.webp';
 
 const images = [image1, image2, image3, image4];
 

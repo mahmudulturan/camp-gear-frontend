@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../../ui/accordion';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '../../../../components/ui/accordion';
 import { faqQuestions } from '../../../../constants/home';
-import SectionHeader from '../../../ui/section-header';
+import SectionHeader from '../../../../components/ui/section-header';
 
 const FAQSection: FC = () => {
     return (

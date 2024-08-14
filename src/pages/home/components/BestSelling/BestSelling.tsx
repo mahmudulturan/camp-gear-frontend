@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import SectionHeader from '../../../ui/section-header';
+import SectionHeader from '../../../../components/ui/section-header';
 import { IProduct, useGetProductsQuery } from '../../../../redux/features/productsApi';
-import ProductCard from './ProductCard';
+import ProductCard from '../../../../components/shared/ProductsCard/ProductCard';
 
 import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';

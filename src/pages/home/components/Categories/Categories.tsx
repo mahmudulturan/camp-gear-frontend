@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import SectionHeader from '../../../ui/section-header';
+import SectionHeader from '../../../../components/ui/section-header';
 
 import backpackImage from '../../../../assets/home/categories/backpack.webp';
 import footwearImage from '../../../../assets/home/categories/footwear.webp';
 import campingImage from '../../../../assets/home/categories/camping.webp';
 import skiSnowsportsImage from '../../../../assets/home/categories/ski_snow_sports.webp';
-import { Button } from '../../../ui/button';
+import { Button } from '../../../../components/ui/button';
 import { Link } from 'react-router-dom';
 
 

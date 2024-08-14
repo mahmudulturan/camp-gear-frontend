@@ -3,7 +3,7 @@ import { Input } from '../../components/ui/input';
 import { FaSearch } from 'react-icons/fa';
 import SectionHeader from '../../components/ui/section-header';
 import { IProduct, useGetProductsQuery } from '../../redux/features/productsApi';
-import ProductCard from '../../components/pages/Home/BestSelling/ProductCard';
+import ProductCard from '../../components/shared/ProductsCard/ProductCard';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../components/ui/select';
 
 

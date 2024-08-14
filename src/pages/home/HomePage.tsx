@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import Banner from '../../components/pages/Home/Banner/Banner';
-import FAQSection from '../../components/pages/Home/FAQSection/FAQSection';
-import BestSelling from '../../components/pages/Home/BestSelling/BestSelling';
-import Categories from '../../components/pages/Home/Categories/Categories';
-import FeaturedProducts from '../../components/pages/Home/FeaturedProducts/FeaturedProducts';
-import DiscountBanner from '../../components/pages/Home/DiscountBanner/DiscountBanner';
+import Banner from './components/Banner/Banner';
+import FAQSection from './components/FAQSection/FAQSection';
+import BestSelling from './components/BestSelling/BestSelling';
+import Categories from './components/Categories/Categories';
+import FeaturedProducts from './components/FeaturedProducts/FeaturedProducts';
+import DiscountBanner from './components/DiscountBanner/DiscountBanner';
 
 const HomePage: FC = () => {
     return (

@@ -4,9 +4,8 @@ import { IProduct } from '../../../../redux/features/productsApi';
 import image from '../../../../assets/mock-item-images/product12_5ad78891-a8aa-4fbf-868e-91c6a471d073.webp';
 
 const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) => {
-    console.log(products);
     return (
-        <div className='my-10'>
+        <div className='mb-10 mt-4'>
             <Table>
                 <TableHeader>
                     <TableRow>

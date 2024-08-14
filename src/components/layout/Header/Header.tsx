@@ -17,7 +17,7 @@ const Header: FC = () => {
         },
         {
             name: 'Product Management',
-            path: '/product-management'
+            path: '/manage-products'
         },
         {
             name: 'About',

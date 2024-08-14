@@ -3,6 +3,7 @@ import MainLayout from '../layouts/MainLayout';
 import HomePage from '../pages/home/HomePage';
 import AboutPage from '../pages/about/AboutPage';
 import ProductsPage from '../pages/products/ProductsPage';
+import ManageProductsPage from '../pages/manage-products/ManageProductsPage';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const MainRoutes = createBrowserRouter([
             {
                 path: '/products',
                 element: <ProductsPage />
+            },
+            {
+                path: '/manage-products',
+                element: <ManageProductsPage />
             },
             {
                 path: '/about',

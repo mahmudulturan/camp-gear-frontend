@@ -13,7 +13,7 @@ const CartPage: FC = () => {
                 <p className='text-textGray text-center my-4'>Here is a list of all cart items</p>
             </div>
             <div className='max-w-5xl mx-auto'>
-                <div className='mx-auto my-10 space-y-6 h-[50vh] overflow-y-auto'>
+                <div className='thin-scrollbar mx-auto my-10 space-y-6 h-[50vh] overflow-y-auto'>
                     {
                         Array(5).fill(0).map((_, index) => (
                             <div key={index} className='flex items-center justify-between gap-6'>

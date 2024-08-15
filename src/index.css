@@ -13,3 +13,18 @@
   }
 
 }
+
+
+.thin-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #EFEDEE;
+  border-radius: 999px;
+  border: 1px solid #EFEDEE;
+}

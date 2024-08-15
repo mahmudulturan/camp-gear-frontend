@@ -25,19 +25,28 @@ export interface IProduct {
     inventory: IInventory;
 }
 
-interface IResponse {
+interface IResponseGetProducts {
     success: boolean;
     message: string;
     data: IProduct[];
 }
 
+interface IResponseGetAProduct {
+    success: boolean;
+    message: string;
+    data: IProduct;
+}
+
 
 const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getProducts: builder.query<IResponse, void>({
+        getProducts: builder.query<IResponseGetProducts, void>({
             query: () => '/products'
+        }),
+        getAProduct: builder.query<IResponseGetAProduct, string>({
+            query: (id) => (`/products/${id}`),
         })
     })
 });
 
-export const { useGetProductsQuery } = productsApi;
+export const { useGetProductsQuery, useGetAProductQuery } = productsApi;

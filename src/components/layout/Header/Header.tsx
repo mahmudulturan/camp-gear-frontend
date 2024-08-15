@@ -47,7 +47,9 @@ const Header: FC = () => {
                     <button> <IoIosSearch className='size-6' /> </button>
                     <button> <HiOutlineUser className='size-6' /> </button>
                     <button> <IoMdHeartEmpty className='size-6' /> </button>
-                    <button> <AiOutlineShoppingCart className='size-6' /> </button>
+                    <Link to={'/cart'}>
+                        <button> <AiOutlineShoppingCart className='size-6' /> </button>
+                    </Link>
                 </div>
             </div>
         </div>

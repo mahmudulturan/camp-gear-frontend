@@ -1,9 +1,10 @@
 import { FC } from 'react';
 import logo from '../../../assets/camp-gear-logo.png';
 import { Link, NavLink } from 'react-router-dom';
-import { IoIosSearch, IoMdHeartEmpty } from 'react-icons/io';
-import { HiOutlineUser } from 'react-icons/hi';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+// import { IoIosSearch, IoMdHeartEmpty } from 'react-icons/io';
+// import { HiOutlineUser } from 'react-icons/hi';
+// import { AiOutlineShoppingCart } from 'react-icons/ai';
+import CartModal from './CartModal';
 const Navbar: FC = () => {
 
     const routes = [
@@ -44,12 +45,13 @@ const Navbar: FC = () => {
                     }
                 </div>
                 <div className='flex items-center gap-2'>
-                    <button> <IoIosSearch className='size-6' /> </button>
+                    {/* <button> <IoIosSearch className='size-6' /> </button>
                     <button> <HiOutlineUser className='size-6' /> </button>
-                    <button> <IoMdHeartEmpty className='size-6' /> </button>
-                    <Link to={'/cart'}>
+                    <button> <IoMdHeartEmpty className='size-6' /> </button> */}
+                    {/* <Link to={'/cart'}>
                         <button> <AiOutlineShoppingCart className='size-6' /> </button>
-                    </Link>
+                    </Link> */}
+                    <CartModal />
                 </div>
             </div>
         </div>

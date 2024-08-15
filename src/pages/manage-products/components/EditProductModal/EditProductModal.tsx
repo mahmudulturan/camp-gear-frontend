@@ -65,6 +65,17 @@ const EditProductModal: FC = () => {
                             />
                         </div>
                         <div className="space-y-2 col-span-2">
+                            <Label htmlFor="image" className="text-right">
+                                Image URL
+                            </Label>
+                            <Input
+                                id="image"
+                                placeholder='Product Image URL'
+                                className="col-span-2"
+                                type='text'
+                            />
+                        </div>
+                        <div className="space-y-2 col-span-2">
                             <Label htmlFor="description" className="text-right">
                                 Description
                             </Label>

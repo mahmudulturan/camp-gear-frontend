@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { IoIosSearch, IoMdHeartEmpty } from 'react-icons/io';
 import { HiOutlineUser } from 'react-icons/hi';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
-const Header: FC = () => {
+const Navbar: FC = () => {
 
     const routes = [
         {
@@ -56,4 +56,4 @@ const Header: FC = () => {
     );
 };
 
-export default Header;
+export default Navbar;

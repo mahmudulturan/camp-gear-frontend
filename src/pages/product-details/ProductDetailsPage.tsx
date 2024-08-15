@@ -2,10 +2,10 @@ import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { useGetAProductQuery } from '../../redux/features/productsApi';
 import Loader from '../../components/shared/Loader/Loader';
-import image from '../../assets/mock-item-images/product14.1.webp';
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { Button } from '../../components/ui/button';
+import ProductImage from './components/ProductImage/ProductImage';
 
 const ProductDetailsPage: FC = () => {
     const { id } = useParams();
@@ -14,9 +14,7 @@ const ProductDetailsPage: FC = () => {
     return (
         <div className='wrapper my-20'>
             <div className='flex flex-col md:flex-row items-center justify-center gap-6'>
-                <div>
-                    <img src={image} alt="" className='max-h-[500px]' />
-                </div>
+                <ProductImage />
                 <div>
                     <div className='space-y-2 mb-10'>
                         <h1 className='text-3xl font-semibold'>{data?.data.title}</h1>

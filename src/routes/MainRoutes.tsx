@@ -4,6 +4,7 @@ import HomePage from '../pages/home/HomePage';
 import AboutPage from '../pages/about/AboutPage';
 import ProductsPage from '../pages/products/ProductsPage';
 import ManageProductsPage from '../pages/manage-products/ManageProductsPage';
+import ProductDetailsPage from '../pages/product-details/ProductDetailsPage';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const MainRoutes = createBrowserRouter([
                 path: '/about',
                 element: <AboutPage />
             },
+            {
+                path: '/products/:id',
+                element: <ProductDetailsPage />
+            }
         ]
     }
 ]);

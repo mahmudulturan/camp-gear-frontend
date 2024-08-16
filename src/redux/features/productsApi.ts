@@ -45,8 +45,15 @@ const productsApi = baseApi.injectEndpoints({
         }),
         getAProduct: builder.query<IResponseGetAProduct, string>({
             query: (id) => (`/products/${id}`),
+        }),
+        postAProduct: builder.mutation<IResponseGetAProduct, IProduct>({
+            query: (product) => ({
+                url: '/products',
+                method: 'POST',
+                body: product
+            })
         })
     })
 });
 
-export const { useGetProductsQuery, useGetAProductQuery } = productsApi;
+export const { useGetProductsQuery, useGetAProductQuery, usePostAProductMutation } = productsApi;

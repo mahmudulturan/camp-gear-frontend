@@ -4,6 +4,7 @@ import { Button } from '../../ui/button';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hook';
+import { DropdownMenuItem } from '@radix-ui/react-dropdown-menu';
 
 const CartModal: FC = () => {
     const { totalPrice, totalItems } = useAppSelector(state => state.cart);
@@ -23,11 +24,13 @@ const CartModal: FC = () => {
                 <h6 className='font-medium'>
                     Total Price : ${totalPrice}
                 </h6>
-                <Link to={'/cart'} className=''>
-                    <Button className='w-full mt-3' size={"sm"}>
-                        View cart
-                    </Button>
-                </Link>
+                <DropdownMenuItem className='hover:border-0 hover:bg-none ' asChild>
+                    <Link to={'/cart'} className=''>
+                        <Button className='w-full mt-3' size={"sm"}>
+                            View cart
+                        </Button>
+                    </Link>
+                </DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     );

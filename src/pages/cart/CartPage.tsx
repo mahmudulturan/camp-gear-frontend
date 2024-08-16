@@ -5,10 +5,15 @@ import { Button } from '../../components/ui/button';
 import { LuPlus, LuMinus } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../../redux/hook';
+import { useAppDispatch, useAppSelector } from '../../redux/hook';
+import { removeFromCart } from '../../redux/features/cart/cartSlice';
 
 const CartPage: FC = () => {
     const { items, totalPrice } = useAppSelector(state => state.cart);
+    const dispatch = useAppDispatch();
+    const handleDeleteFromCart = (id: string) => {
+        dispatch(removeFromCart({ _id: id }));
+    }
     return (
         <div className='wrapper mb-20'>
             <div className='my-10'>
@@ -42,7 +47,7 @@ const CartPage: FC = () => {
                                             </div>
                                             <div className='flex items-center justify-between'>
                                                 <h6 className='text-lg font-bold'>${item.price.amount}</h6>
-                                                <Button variant={"outline"} size={"icon"}> <RiDeleteBin6Line className='size-4' />
+                                                <Button onClick={() => handleDeleteFromCart(item._id)} variant={"outline"} size={"icon"}> <RiDeleteBin6Line className='size-4' />
                                                 </Button>
                                             </div>
                                         </div>

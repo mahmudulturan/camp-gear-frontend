@@ -1,12 +1,19 @@
 import { FC } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../components/ui/table';
-import { IProduct } from '../../../../redux/features/productsApi';
+import { IProduct, useDeleteAProductMutation } from '../../../../redux/features/productsApi';
 import image from '../../../../assets/mock-item-images/product12_5ad78891-a8aa-4fbf-868e-91c6a471d073.webp';
 import { Button } from '../../../../components/ui/button';
 import { MdDelete } from 'react-icons/md';
 import EditProductModal from '../EditProductModal/EditProductModal';
+import toast from 'react-hot-toast';
 
 const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) => {
+    const [deleteAProduct] = useDeleteAProductMutation();
+    const handleDeleteProduct = (id: string) => {
+        deleteAProduct(id).unwrap().then(()=>{
+            toast.success("Product deleted successfully");
+        });
+    }
     return (
         <div className='mb-10 mt-4'>
             <Table>
@@ -34,7 +41,7 @@ const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) =
                             <TableCell className="text-right">
                                 <div className='flex items-center gap-3 justify-end'>
                                     <EditProductModal />
-                                    <Button size={"icon"}><MdDelete className='size-6' /></Button>
+                                    <Button onClick={() => handleDeleteProduct(product._id)} size={"icon"}><MdDelete className='size-6' /></Button>
                                 </div>
                             </TableCell>
                         </TableRow>

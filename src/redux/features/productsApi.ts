@@ -20,7 +20,7 @@ export interface IProduct {
     description: string;
     price: IPrice;
     category: string;
-    image: string[];
+    image: string;
     rating: IRating;
     inventory: IInventory;
 }
@@ -46,7 +46,7 @@ const productsApi = baseApi.injectEndpoints({
         getAProduct: builder.query<IResponseGetAProduct, string>({
             query: (id) => (`/products/${id}`),
         }),
-        postAProduct: builder.mutation<IResponseGetAProduct, IProduct>({
+        postAProduct: builder.mutation<IResponseGetAProduct, Partial<IProduct>>({
             query: (product) => ({
                 url: '/products',
                 method: 'POST',

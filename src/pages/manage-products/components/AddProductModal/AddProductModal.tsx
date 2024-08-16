@@ -1,12 +1,52 @@
-import { FC } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../../../components/ui/dialog';
+import { FC, FormEvent, useState } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../../../../components/ui/dialog';
 import { Button } from '../../../../components/ui/button';
 import { Input } from '../../../../components/ui/input';
 import { Label } from '../../../../components/ui/label';
+import { IProduct, usePostAProductMutation } from '../../../../redux/features/productsApi';
+import toast from 'react-hot-toast';
 
 const AddProductModal: FC = () => {
+    const [open, setOpen] = useState(false);
+
+    const [addProduct] = usePostAProductMutation();
+
+    const handleAddProduct = (e: FormEvent) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const title = (form.title as unknown as HTMLInputElement).value;
+        const category = (form.category as unknown as HTMLInputElement).value;
+        const price = parseInt((form.price as unknown as HTMLInputElement).value);
+        const stock_quantity = parseInt((form.stock_quantity as unknown as HTMLInputElement).value);
+        const image = (form.image as unknown as HTMLInputElement).value;
+        const description = (form.description as unknown as HTMLInputElement).value;
+
+        const productData: Partial<IProduct> = {
+            title,
+            category,
+            price: {
+                amount: price,
+                discount: 0
+            },
+            rating: {
+                rate: Math.random() * 5,
+                count: Math.floor(Math.random() * 1000)
+            },
+            inventory: {
+                quantity: stock_quantity,
+                inStock: true
+            },
+            image,
+            description
+        }
+        addProduct(productData).unwrap().then(() => {
+            setOpen(false);
+            toast.success("Product added successfully")
+        });
+    }
+    
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen} >
             <DialogTrigger asChild>
                 <Button variant="outline" className='h-10 px-4'>Add New Product</Button>
             </DialogTrigger>
@@ -18,12 +58,13 @@ const AddProductModal: FC = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <div>
-                    <form className='grid grid-cols-2 gap-3'>
+                    <form onSubmit={handleAddProduct} className='grid grid-cols-2 gap-3'>
                         <div className="space-y-2">
                             <Label htmlFor="title" className="text-right">
                                 Title
                             </Label>
                             <Input
+                                required
                                 id="title"
                                 placeholder='Product Title'
                                 className=""
@@ -34,6 +75,7 @@ const AddProductModal: FC = () => {
                                 Category
                             </Label>
                             <Input
+                                required
                                 id="category"
                                 placeholder='Product Category'
                                 className=""
@@ -44,6 +86,7 @@ const AddProductModal: FC = () => {
                                 Price
                             </Label>
                             <Input
+                                required
                                 id="price"
                                 placeholder='Product Price'
                                 className=""
@@ -56,6 +99,7 @@ const AddProductModal: FC = () => {
                                 Stock Quantity
                             </Label>
                             <Input
+                                required
                                 id="stock_quantity"
                                 placeholder='Product Stock Quantity'
                                 className=""
@@ -68,6 +112,7 @@ const AddProductModal: FC = () => {
                                 Image URL
                             </Label>
                             <Input
+                                required
                                 id="image"
                                 placeholder='Product Image URL'
                                 className="col-span-2"
@@ -79,17 +124,16 @@ const AddProductModal: FC = () => {
                                 Description
                             </Label>
                             <Input
+                                required
                                 id="description"
                                 placeholder='Product description'
                                 className="col-span-2"
                                 type='text'
                             />
                         </div>
+                        <Button type="submit" className='col-span-2 mt-3'>Add Product</Button>
                     </form>
                 </div>
-                <DialogFooter>
-                    <Button type="submit">Add Product</Button>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     );

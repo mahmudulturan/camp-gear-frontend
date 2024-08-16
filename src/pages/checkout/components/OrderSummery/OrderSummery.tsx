@@ -8,7 +8,7 @@ const OrderSummery: FC<Partial<ICartState>> = ({ items, totalPrice }) => {
             <div className='space-y-3'>
                 {
                     items?.map((item, index) => (
-                        <div className='flex items-center justify-between gap-6'>
+                        <div key={index} className='flex items-center justify-between gap-6'>
                             <div className='flex items-center gap-3'>
                                 <span>{index + 1}.</span>
                                 <h6 className='font-medium'>{item.title} <span className='text-gray-600 text-sm ml-5'>x{item.quantity}</span></h6>

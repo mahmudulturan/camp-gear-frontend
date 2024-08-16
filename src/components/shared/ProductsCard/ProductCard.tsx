@@ -8,6 +8,7 @@ import image4 from '../../../assets/mock-item-images/product15.webp';
 import { Link } from 'react-router-dom';
 import { useAppDispatch } from '../../../redux/hook';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
+import toast from 'react-hot-toast';
 
 
 const images = [image1, image2, image3, image4];
@@ -17,6 +18,7 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
 
     const handleAddToCart = () => {
         dispatch(addToCart(product));
+        toast.success("Product added to cart")
     }
     return (
         <div className='group'>

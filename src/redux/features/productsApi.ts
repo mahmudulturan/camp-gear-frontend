@@ -62,8 +62,16 @@ const productsApi = baseApi.injectEndpoints({
                 method: 'DELETE'
             }),
             invalidatesTags: ['products']
+        }),
+        updateAProduct: builder.mutation<IResponseGetAProduct, Partial<IProduct>>({
+            query: (product) => ({
+                url: `/products/${product._id}`,
+                method: 'PUT',
+                body: product
+            }),
+            invalidatesTags: ['products']
         })
     })
 });
 
-export const { useGetProductsQuery, useGetAProductQuery, usePostAProductMutation, useDeleteAProductMutation } = productsApi;
+export const { useGetProductsQuery, useGetAProductQuery, usePostAProductMutation, useDeleteAProductMutation, useUpdateAProductMutation } = productsApi;

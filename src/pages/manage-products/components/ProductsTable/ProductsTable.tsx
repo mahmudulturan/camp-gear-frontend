@@ -10,7 +10,7 @@ import toast from 'react-hot-toast';
 const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) => {
     const [deleteAProduct] = useDeleteAProductMutation();
     const handleDeleteProduct = (id: string) => {
-        deleteAProduct(id).unwrap().then(()=>{
+        deleteAProduct(id).unwrap().then(() => {
             toast.success("Product deleted successfully");
         });
     }
@@ -40,7 +40,7 @@ const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) =
                             <TableCell className='w-[200px] text-center'>{product.inventory?.quantity}</TableCell>
                             <TableCell className="text-right">
                                 <div className='flex items-center gap-3 justify-end'>
-                                    <EditProductModal />
+                                    <EditProductModal product={product} />
                                     <Button onClick={() => handleDeleteProduct(product._id)} size={"icon"}><MdDelete className='size-6' /></Button>
                                 </div>
                             </TableCell>

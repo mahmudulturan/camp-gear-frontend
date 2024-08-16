@@ -1,13 +1,53 @@
-import { FC } from 'react';
-import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '../../../../components/ui/dialog';
+import { FC, FormEvent, useState } from 'react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '../../../../components/ui/dialog';
 import { Button } from '../../../../components/ui/button';
 import { Input } from '../../../../components/ui/input';
 import { Label } from '../../../../components/ui/label';
 import { MdEdit } from 'react-icons/md';
+import { IProduct, useUpdateAProductMutation } from '../../../../redux/features/productsApi';
+import toast from 'react-hot-toast';
 
-const EditProductModal: FC = () => {
+const EditProductModal: FC<{ product: IProduct }> = ({ product }) => {
+    const [open, setOpen] = useState(false);
+    const [updateAProduct] = useUpdateAProductMutation();
+
+    const handleAddProduct = (e: FormEvent) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const title = (form.title as unknown as HTMLInputElement).value;
+        const category = (form.category as unknown as HTMLInputElement).value;
+        const price = parseInt((form.price as unknown as HTMLInputElement).value);
+        const stock_quantity = parseInt((form.stock_quantity as unknown as HTMLInputElement).value);
+        const image = (form.image as unknown as HTMLInputElement).value;
+        const description = (form.description as unknown as HTMLInputElement).value;
+
+        const productData: Partial<IProduct> = {
+            _id: product._id,
+            title,
+            category,
+            price: {
+                amount: price,
+                discount: 0
+            },
+            rating: {
+                rate: Math.random() * 5,
+                count: Math.floor(Math.random() * 1000)
+            },
+            inventory: {
+                quantity: stock_quantity,
+                inStock: true
+            },
+            image,
+            description
+        }
+        updateAProduct(productData).unwrap().then(() => {
+            setOpen(false);
+            toast.success("Product updated successfully")
+        });
+    }
+
     return (
-        <Dialog>
+        <Dialog open={open} onOpenChange={setOpen} >
             <DialogTrigger asChild>
                 <Button size={"icon"}><MdEdit className='size-6' /></Button>
             </DialogTrigger>
@@ -19,12 +59,13 @@ const EditProductModal: FC = () => {
                     </DialogDescription>
                 </DialogHeader>
                 <div>
-                    <form className='grid grid-cols-2 gap-3'>
+                    <form className='grid grid-cols-2 gap-3' onSubmit={handleAddProduct}>
                         <div className="space-y-2">
                             <Label htmlFor="title" className="text-right">
                                 Title
                             </Label>
                             <Input
+                                defaultValue={product.title}
                                 id="title"
                                 placeholder='Product Title'
                                 className=""
@@ -35,6 +76,7 @@ const EditProductModal: FC = () => {
                                 Category
                             </Label>
                             <Input
+                                defaultValue={product.category}
                                 id="category"
                                 placeholder='Product Category'
                                 className=""
@@ -45,6 +87,7 @@ const EditProductModal: FC = () => {
                                 Price
                             </Label>
                             <Input
+                                defaultValue={product.price.amount}
                                 id="price"
                                 placeholder='Product Price'
                                 className=""
@@ -57,6 +100,7 @@ const EditProductModal: FC = () => {
                                 Stock Quantity
                             </Label>
                             <Input
+                                defaultValue={product.inventory.quantity}
                                 id="stock_quantity"
                                 placeholder='Product Stock Quantity'
                                 className=""
@@ -69,6 +113,7 @@ const EditProductModal: FC = () => {
                                 Image URL
                             </Label>
                             <Input
+                                defaultValue={product.image}
                                 id="image"
                                 placeholder='Product Image URL'
                                 className="col-span-2"
@@ -80,17 +125,16 @@ const EditProductModal: FC = () => {
                                 Description
                             </Label>
                             <Input
+                                defaultValue={product.description}
                                 id="description"
                                 placeholder='Product description'
                                 className="col-span-2"
                                 type='text'
                             />
                         </div>
+                        <Button type="submit" className='col-span-2 mt-3'>Update Product</Button>
                     </form>
                 </div>
-                <DialogFooter>
-                    <Button type="submit">Update Product</Button>
-                </DialogFooter>
             </DialogContent>
         </Dialog>
     );

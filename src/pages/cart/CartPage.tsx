@@ -6,13 +6,23 @@ import { LuPlus, LuMinus } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import { removeFromCart } from '../../redux/features/cart/cartSlice';
+import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../redux/features/cart/cartSlice';
+import toast from 'react-hot-toast';
 
 const CartPage: FC = () => {
     const { items, totalPrice } = useAppSelector(state => state.cart);
     const dispatch = useAppDispatch();
     const handleDeleteFromCart = (id: string) => {
         dispatch(removeFromCart({ _id: id }));
+    }
+    const handleIncreaseQuantity = (id: string, current_quantity: number, stock_quantity: number) => {
+        if (current_quantity > stock_quantity - 1) {
+            return toast.error("Stock quantity exceeded");
+        }
+        dispatch(increaseQuantity({ _id: id }));
+    }
+    const handleDecreaseQuantity = (id: string) => {
+        dispatch(decreaseQuantity({ _id: id }));
     }
     return (
         <div className='wrapper mb-20'>
@@ -39,11 +49,14 @@ const CartPage: FC = () => {
                                                 <p className='text-textGray'>{item.description}</p>
                                             </div>
                                         </div>
+                                        <div>
+                                            <span>In Stock: {item.inventory.quantity}</span>
+                                        </div>
                                         <div className='space-y-1'>
                                             <div className='flex items-center gap-3'>
-                                                <Button size={"icon"} variant={"ghost"}><LuMinus className='size-4' /></Button>
+                                                <Button onClick={() => item.quantity > 1 && handleDecreaseQuantity(item._id)} size={"icon"} variant={"ghost"}><LuMinus className='size-4' /></Button>
                                                 <span className='font-semibold text-lg'>{item.quantity}</span>
-                                                <Button size={"icon"} variant={"ghost"}><LuPlus className='size-4' /></Button>
+                                                <Button onClick={() => handleIncreaseQuantity(item._id, item.quantity, item.inventory.quantity)} size={"icon"} variant={"ghost"}><LuPlus className='size-4' /></Button>
                                             </div>
                                             <div className='flex items-center justify-between'>
                                                 <h6 className='text-lg font-bold'>${item.price.amount}</h6>

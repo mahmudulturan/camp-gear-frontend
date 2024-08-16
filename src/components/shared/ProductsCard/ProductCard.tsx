@@ -6,7 +6,7 @@ import image2 from '../../../assets/mock-item-images/product12_5ad78891-a8aa-4fb
 import image3 from '../../../assets/mock-item-images/product14.1.webp';
 import image4 from '../../../assets/mock-item-images/product15.webp';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../../redux/hook';
+import { useAppDispatch, useAppSelector } from '../../../redux/hook';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
 import toast from 'react-hot-toast';
 
@@ -14,9 +14,17 @@ import toast from 'react-hot-toast';
 const images = [image1, image2, image3, image4];
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
+    const { items } = useAppSelector(state => state.cart)
     const dispatch = useAppDispatch()
 
+    const isExist = items.find(item => item._id === product._id) || {
+        quantity: 0
+    };
+
     const handleAddToCart = () => {
+        if (isExist?.quantity > product?.inventory?.quantity - 1) {
+            return toast.error("Stock quantity exceeded");
+        }
         dispatch(addToCart(product));
         toast.success("Product added to cart")
     }

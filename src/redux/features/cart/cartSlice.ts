@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../productsApi"
+import toast from "react-hot-toast";
 
 interface ICartProduct extends IProduct {
     quantity: number
@@ -26,6 +27,9 @@ export const cartSlice = createSlice({
             state.totalPrice = action.payload.price.amount + state.totalPrice;
             const isExist = state.items.find(item => item._id === action.payload._id);
             if (isExist) {
+                if (isExist?.quantity > isExist?.inventory.quantity - 1) {
+                    return;
+                }
                 state.items = state.items.map(item => {
                     if (item._id === action.payload._id) {
                         state.totalItems++;

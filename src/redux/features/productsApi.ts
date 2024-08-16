@@ -41,17 +41,20 @@ interface IResponseGetAProduct {
 const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query<IResponseGetProducts, void>({
-            query: () => '/products'
+            query: () => '/products',
+            providesTags: ['products']
         }),
         getAProduct: builder.query<IResponseGetAProduct, string>({
             query: (id) => (`/products/${id}`),
+            providesTags: ['products']
         }),
         postAProduct: builder.mutation<IResponseGetAProduct, Partial<IProduct>>({
             query: (product) => ({
                 url: '/products',
                 method: 'POST',
                 body: product
-            })
+            }),
+            invalidatesTags: ['products']
         })
     })
 });

@@ -19,7 +19,7 @@ const CartPage: FC = () => {
             {
                 items.length > 0 ?
                     <div className='max-w-5xl mx-auto'>
-                        <div className='thin-scrollbar mx-auto my-10 space-y-6 h-[50vh] overflow-y-auto'>
+                        <div className='thin-scrollbar mx-auto my-10 space-y-6 max-h-[50vh] overflow-y-auto'>
                             {
                                 items.map((item, index) => (
                                     <div key={index} className='flex items-center justify-between gap-6'>
@@ -37,7 +37,7 @@ const CartPage: FC = () => {
                                         <div className='space-y-1'>
                                             <div className='flex items-center gap-3'>
                                                 <Button size={"icon"} variant={"ghost"}><LuMinus className='size-4' /></Button>
-                                                <span className='font-semibold text-lg'>1</span>
+                                                <span className='font-semibold text-lg'>{item.quantity}</span>
                                                 <Button size={"icon"} variant={"ghost"}><LuPlus className='size-4' /></Button>
                                             </div>
                                             <div className='flex items-center justify-between'>

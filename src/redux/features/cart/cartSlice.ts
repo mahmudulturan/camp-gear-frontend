@@ -7,12 +7,14 @@ interface ICartProduct extends IProduct {
 
 export interface ICartState {
     items: ICartProduct[];
-    totalPrice: number
+    totalPrice: number;
+    totalItems: number;
 }
 
 const initialState: ICartState = {
     items: [],
-    totalPrice: 0
+    totalPrice: 0,
+    totalItems: 0
 }
 
 
@@ -21,26 +23,30 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addToCart: (state, action: PayloadAction<IProduct>) => {
+            state.totalPrice = action.payload.price.amount + state.totalPrice;
             const isExist = state.items.find(item => item._id === action.payload._id);
             if (isExist) {
                 state.items = state.items.map(item => {
                     if (item._id === action.payload._id) {
+                        state.totalItems++;
                         return { ...item, quantity: item.quantity + 1 }
                     }
-                    state.totalPrice = action.payload.price.amount + state.totalPrice;
                     return item
                 })
             } else {
+                state.totalItems++;
                 state.items = [...state.items, { ...action.payload, quantity: 1 }];
-                state.totalPrice = action.payload.price.amount + state.totalPrice;
+
             }
         },
         removeFromCart: (state, action: PayloadAction<{ _id: string }>) => {
             const item = state.items.find(item => item._id === action.payload._id);
             state.items = state.items.filter(item => item._id !== action.payload._id);
             state.totalPrice = state.totalPrice - (item!.price.amount * item!.quantity);
+            state.totalItems = state.totalItems - item!.quantity;
         },
         increaseQuantity: (state, action: PayloadAction<{ _id: string }>) => {
+            state.totalItems++;
             state.items = state.items.map(item => {
                 if (item._id === action.payload._id) {
                     state.totalPrice = item!.price.amount + state.totalPrice;
@@ -50,6 +56,7 @@ export const cartSlice = createSlice({
             })
         },
         decreaseQuantity: (state, action: PayloadAction<{ _id: string }>) => {
+            state.totalItems--;
             state.items = state.items.map(item => {
                 if (item._id === action.payload._id) {
                     state.totalPrice = state.totalPrice - item.price.amount;

@@ -3,6 +3,7 @@ import SectionHeader from '../../../../components/ui/section-header';
 import { IProduct, useGetProductsQuery } from '../../../../redux/features/productsApi';
 import ProductCard from '../../../../components/shared/ProductsCard/ProductCard';
 import { Button } from '../../../../components/ui/button';
+import { Link } from 'react-router-dom';
 
 const FeaturedProducts: FC = () => {
     const { data, isLoading } = useGetProductsQuery(undefined);
@@ -20,7 +21,9 @@ const FeaturedProducts: FC = () => {
                 }
             </div>
             <div className='text-center my-10'>
-                <Button variant={"reverse"}>View All</Button>
+                <Link to={'/products'}>
+                    <Button variant={"reverse"}>View All</Button>
+                </Link>
             </div>
         </div>
     );

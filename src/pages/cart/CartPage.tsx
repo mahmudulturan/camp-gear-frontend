@@ -4,6 +4,7 @@ import image from '../../assets/mock-item-images/product14.1.webp';
 import { Button } from '../../components/ui/button';
 import { LuPlus, LuMinus } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { Link } from 'react-router-dom';
 
 const CartPage: FC = () => {
     return (
@@ -49,7 +50,9 @@ const CartPage: FC = () => {
                     <div className='space-y-3'>
                         <h6 className='text-xl font-semibold text-end'>Total Price: $12.99</h6>
                         <hr />
-                        <Button variant={"default"}>Procced to checkout</Button>
+                        <Link to={'/checkout'}>
+                            <Button variant={"default"}>Procced to checkout</Button>
+                        </Link>
                     </div>
                 </div>
             </div>

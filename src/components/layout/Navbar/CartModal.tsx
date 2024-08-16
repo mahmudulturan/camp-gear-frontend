@@ -8,7 +8,8 @@ const CartModal: FC = () => {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="size-10 p-0">
+                <Button variant="outline" className="size-10 p-0 relative">
+                    <span className='absolute -top-3 -right-3 bg-primary text-white rounded-full px-2'>25</span>
                     <AiOutlineShoppingCart className='size-6' />
                 </Button>
             </DropdownMenuTrigger>

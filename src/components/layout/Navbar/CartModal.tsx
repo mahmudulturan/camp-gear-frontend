@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../../redux/hook';
 
 const CartModal: FC = () => {
-    const { items, totalPrice, totalItems } = useAppSelector(state => state.cart);
+    const { totalPrice, totalItems } = useAppSelector(state => state.cart);
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>

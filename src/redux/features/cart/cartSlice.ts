@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../productsApi"
-import toast from "react-hot-toast";
 
 interface ICartProduct extends IProduct {
     quantity: number

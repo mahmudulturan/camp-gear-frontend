@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IProduct } from "../productsApi"
 
 export interface ICartState {
@@ -16,9 +16,9 @@ export const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
-        addToCart: (state, { payload }) => {
-            state.items = [...state.items, payload];
-            state.totalPrice = payload.price + state.totalPrice;
+        addToCart: (state, action: PayloadAction<IProduct>) => {
+            state.items = [...state.items, action.payload];
+            state.totalPrice = action.payload.price.amount + state.totalPrice;
         }
     }
 })

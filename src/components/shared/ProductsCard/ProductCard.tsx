@@ -6,10 +6,18 @@ import image2 from '../../../assets/mock-item-images/product12_5ad78891-a8aa-4fb
 import image3 from '../../../assets/mock-item-images/product14.1.webp';
 import image4 from '../../../assets/mock-item-images/product15.webp';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../../../redux/hook';
+import { addToCart } from '../../../redux/features/cart/cartSlice';
+
 
 const images = [image1, image2, image3, image4];
 
 const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
+    const dispatch = useAppDispatch()
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+    }
     return (
         <div className='group'>
             <div className='bg-[#EFEDEE] relative overflow-hidden cursor-pointer'>
@@ -21,8 +29,8 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
             <div className='mt-4'>
                 <h6 className='font-medium cursor-pointer hover:text-primary duration-300'>{product?.title}</h6>
                 <div className='relative overflow-hidden'>
-                    <p className='font-semibold text-primary'>$45{product?.price?.amount}</p>
-                    <button className='uppercase font-medium text-xs border-b-[1.5px] border-primary pb-0.5 text-primary bg-white absolute bottom-0 left-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 pt-0.5'>Add to cart</button>
+                    <p className='font-semibold text-primary'>${product?.price?.amount}</p>
+                    <button onClick={handleAddToCart} className='uppercase font-medium text-xs border-b-[1.5px] border-primary pb-0.5 text-primary bg-white absolute bottom-0 left-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 pt-0.5'>Add to cart</button>
                 </div>
             </div>
         </div>

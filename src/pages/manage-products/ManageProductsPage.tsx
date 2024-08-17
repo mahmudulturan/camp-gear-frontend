@@ -19,7 +19,7 @@ const ManageProductsPage: FC = () => {
             <div className='text-center'>
                 <AddProductModal />
             </div>
-            <ProductsTable products={data?.data} />
+            <ProductsTable products={data?.data?.products} />
         </div>
     );
 };

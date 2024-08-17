@@ -24,7 +24,7 @@ const ProductsPage: FC = () => {
                 <p className='text-textGray text-center my-4'>Here is a list of all products</p>
             </div>
             <SearchFilter setSortValue={setSortValue} />
-            <AllProducts products={data?.data} />
+            <AllProducts products={data?.data.products} />
             <PaginationButtons page={page} setPage={setPage} totalPages={totalPages} />
         </div>
     );

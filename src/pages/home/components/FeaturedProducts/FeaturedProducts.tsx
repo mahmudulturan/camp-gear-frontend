@@ -46,7 +46,7 @@ const FeaturedProducts: FC = () => {
                 modules={[Autoplay, Pagination]}
             >
                 {
-                    data?.data.slice(0, 8).map((product: IProduct) => (<SwiperSlide key={product?._id} className='mb-10'><ProductCard product={product} /></SwiperSlide>))
+                    data?.data?.products.slice(0, 8).map((product: IProduct) => (<SwiperSlide key={product?._id} className='mb-10'><ProductCard product={product} /></SwiperSlide>))
                 }
 
             </Swiper>

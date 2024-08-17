@@ -28,7 +28,10 @@ export interface IProduct {
 interface IResponseGetProducts {
     success: boolean;
     message: string;
-    data: IProduct[];
+    data: {
+        products: IProduct[];
+        totalProducts: number;
+    };
 }
 
 interface IResponseGetAProduct {

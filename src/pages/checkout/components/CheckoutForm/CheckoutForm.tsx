@@ -2,10 +2,17 @@ import { FC, useEffect, useState } from 'react';
 import { Input } from '../../../../components/ui/input';
 import { Label } from '../../../../components/ui/label';
 import { Button } from '../../../../components/ui/button';
-import { ICartState } from '../../../../redux/features/cart/cartSlice';
+import { ICartState, removeAllCartItems } from '../../../../redux/features/cart/cartSlice';
+import { useCreateBookingMutation } from '../../../../redux/features/booking/bookingApi';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch } from '../../../../redux/hook';
 
 const CheckoutForm: FC<Partial<ICartState>> = ({ totalItems, totalPrice, items }) => {
     const [products, setProducts] = useState<{ product: string, quantity: number }[]>([]);
+
+    const [createBooking] = useCreateBookingMutation();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const formatedProducts = items?.map(item => {
@@ -18,6 +25,8 @@ const CheckoutForm: FC<Partial<ICartState>> = ({ totalItems, totalPrice, items }
             setProducts(formatedProducts);
         }
     }, [items])
+
+    const navigate = useNavigate();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -43,9 +52,14 @@ const CheckoutForm: FC<Partial<ICartState>> = ({ totalItems, totalPrice, items }
                 zip
             },
             total: totalPrice,
-            products,
+            product: products,
             quantity: totalItems
         }
+        createBooking(bookingData).unwrap().then(() => {
+            toast.success('Booking created successfully!');
+            dispatch(removeAllCartItems());
+            navigate('/products');
+        });
         console.log(bookingData);
     }
     return (

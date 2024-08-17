@@ -1,13 +1,22 @@
-import React, { FC } from 'react';
-import { Button } from '../../../../components/ui/button';
+import React, { FC, useEffect, useState } from 'react';
+import { Button } from '../../ui/button';
 
 type TPaginationButtonsProps = {
     page: number;
     setPage: React.Dispatch<React.SetStateAction<number>>;
-    totalPages: number;
+    productsCount: number | undefined;
 }
 
-const PaginationButtons: FC<TPaginationButtonsProps> = ({ page, setPage, totalPages }) => {
+const PaginationButtons: FC<TPaginationButtonsProps> = ({ page, setPage, productsCount }) => {
+    const [totalPages, setTotalPages] = useState<number>(1);
+
+    useEffect(() => {
+        if (!productsCount) {
+            setTotalPages(1);
+        } else {
+            setTotalPages(productsCount % 8 === 0 ? productsCount / 8 : Math.floor(productsCount / 8) + 1);
+        }
+    }, [productsCount])
 
     return (
         <div className='my-10 flex items-center justify-end'>

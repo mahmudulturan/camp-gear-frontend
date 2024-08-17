@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import SectionHeader from '../../components/ui/section-header';
 import { useGetProductsQuery } from '../../redux/features/productsApi';
 
 import AllProducts from './components/AllProducts/AllProducts';
-import PaginationButtons from './components/PaginationButtons/PaginationButtons';
+import PaginationButtons from '../../components/shared/PaginationButtons/PaginationButtons';
 import SearchFilter from './components/SearchFilter/SearchFilter';
 import Loader from '../../components/shared/Loader/Loader';
 
@@ -14,7 +14,6 @@ const ProductsPage: FC = () => {
     const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("");
     const [filterValue, setFilterValue] = useState<string>('');
     const [searchKey, setSearchKey] = useState<string>('');
-    const [totalPages, setTotalPages] = useState<number>(1);
 
     const query = {
         searchKey,
@@ -29,14 +28,7 @@ const ProductsPage: FC = () => {
 
 
 
-    useEffect(() => {
-        const productsCount = data?.data.productsCount;
-        if (!productsCount) {
-            setTotalPages(1);
-        } else {
-            setTotalPages(productsCount % 8 === 0 ? productsCount / 8 : Math.floor(productsCount / 8) + 1);
-        }
-    }, [data?.data.productsCount])
+
 
     if (isLoading) return <Loader />;
 
@@ -48,7 +40,7 @@ const ProductsPage: FC = () => {
             </div>
             <SearchFilter searchKey={searchKey} filterValue={filterValue} setSearchKey={setSearchKey} setSortOrder={setSortOrder} setFilterValue={setFilterValue} sortProperty={sortProperty} sortOrder={sortOrder} setSortProperty={setSortProperty} />
             <AllProducts products={data?.data.products} />
-            <PaginationButtons page={page} setPage={setPage} totalPages={totalPages} />
+            <PaginationButtons page={page} setPage={setPage} productsCount={data?.data.productsCount} />
         </div>
     );
 };

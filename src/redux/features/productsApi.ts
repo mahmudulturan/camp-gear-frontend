@@ -47,11 +47,11 @@ interface IResponseCategories {
 }
 
 interface IQuery {
-    searchKey: string;
-    sortOrder: string;
-    sortProperty: string;
-    filterValue: string;
-    page: number;
+    searchKey?: string;
+    sortOrder?: string;
+    sortProperty?: string;
+    filterValue?: string;
+    page?: number;
 }
 
 const productsApi = baseApi.injectEndpoints({

@@ -9,7 +9,7 @@ import { Autoplay, Pagination } from 'swiper/modules';
 import './featured-products.css';
 
 const FeaturedProducts: FC = () => {
-    const { data, isLoading } = useGetProductsQuery(undefined);
+    const { data, isLoading } = useGetProductsQuery({});
 
     if (isLoading) return <div>Loading...</div>;
     return (

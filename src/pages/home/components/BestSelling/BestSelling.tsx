@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 
 const BestSelling: FC = () => {
-    const { data, isLoading } = useGetProductsQuery(undefined);
+    const { data, isLoading } = useGetProductsQuery({});
 
     if (isLoading) return <div>Loading...</div>;
 

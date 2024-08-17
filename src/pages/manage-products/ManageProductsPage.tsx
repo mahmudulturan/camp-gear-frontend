@@ -6,7 +6,7 @@ import AddProductModal from './components/AddProductModal/AddProductModal';
 
 const ManageProductsPage: FC = () => {
 
-    const { data, isLoading } = useGetProductsQuery(undefined);
+    const { data, isLoading } = useGetProductsQuery({});
 
     if (isLoading) return <div>Loading...</div>;
 

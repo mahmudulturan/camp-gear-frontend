@@ -7,6 +7,7 @@ import ManageProductsPage from '../pages/manage-products/ManageProductsPage';
 import ProductDetailsPage from '../pages/product-details/ProductDetailsPage';
 import CartPage from '../pages/cart/CartPage';
 import CheckoutPage from '../pages/checkout/CheckoutPage';
+import SuccessPage from '../pages/success/SuccessPage';
 
 const MainRoutes = createBrowserRouter([
     {
@@ -39,7 +40,11 @@ const MainRoutes = createBrowserRouter([
             },
             {
                 path: '/checkout',
-                element: <CheckoutPage/>
+                element: <CheckoutPage />
+            },
+            {
+                path: '/order-success',
+                element: <SuccessPage />
             }
         ]
     }

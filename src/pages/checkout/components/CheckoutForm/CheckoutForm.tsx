@@ -58,7 +58,7 @@ const CheckoutForm: FC<Partial<ICartState>> = ({ totalItems, totalPrice, items }
         createBooking(bookingData).unwrap().then(() => {
             toast.success('Booking created successfully!');
             dispatch(removeAllCartItems());
-            navigate('/products');
+            navigate('/order-success');
         });
         console.log(bookingData);
     }

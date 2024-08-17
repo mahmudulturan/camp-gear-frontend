@@ -4,12 +4,13 @@ import { IProduct, useGetProductsQuery } from '../../../../redux/features/produc
 import ProductCard from '../../../../components/shared/ProductsCard/ProductCard';
 import { Button } from '../../../../components/ui/button';
 import { Link } from 'react-router-dom';
+import Loader from '../../../../components/shared/Loader/Loader';
 
 
 const BestSelling: FC = () => {
     const { data, isLoading } = useGetProductsQuery({});
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loader />;
 
     return (
         <div className='wrapper'>
@@ -27,7 +28,7 @@ const BestSelling: FC = () => {
                     <Button variant={"reverse"}>View All</Button>
                 </Link>
             </div>
-            
+
         </div>
     );
 };

@@ -7,11 +7,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { Autoplay, Pagination } from 'swiper/modules';
 import './featured-products.css';
+import Loader from '../../../../components/shared/Loader/Loader';
 
 const FeaturedProducts: FC = () => {
     const { data, isLoading } = useGetProductsQuery({});
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loader />;
+
     return (
         <div className='wrapper'>
             <div className='my-10'>

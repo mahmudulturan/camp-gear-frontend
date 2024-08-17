@@ -4,12 +4,13 @@ import ProductsTable from './components/ProductsTable/ProductsTable';
 import { useGetProductsQuery } from '../../redux/features/productsApi';
 import AddProductModal from './components/AddProductModal/AddProductModal';
 import PaginationButtons from '../../components/shared/PaginationButtons/PaginationButtons';
+import Loader from '../../components/shared/Loader/Loader';
 
 const ManageProductsPage: FC = () => {
     const [page, setPage] = useState<number>(1);
     const { data, isLoading } = useGetProductsQuery({ page });
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loader />;
 
     return (
         <div className='wrapper mb-20'>

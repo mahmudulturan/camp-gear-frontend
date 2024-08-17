@@ -46,7 +46,7 @@ const ProductsPage: FC = () => {
                 <SectionHeader title="All Products" />
                 <p className='text-textGray text-center my-4'>Here is a list of all products</p>
             </div>
-            <SearchFilter filterValue={filterValue} setSearchKey={setSearchKey} setSortOrder={setSortOrder} setFilterValue={setFilterValue} sortProperty={sortProperty} sortOrder={sortOrder} setSortProperty={setSortProperty} />
+            <SearchFilter searchKey={searchKey} filterValue={filterValue} setSearchKey={setSearchKey} setSortOrder={setSortOrder} setFilterValue={setFilterValue} sortProperty={sortProperty} sortOrder={sortOrder} setSortProperty={setSortProperty} />
             <AllProducts products={data?.data.products} />
             <PaginationButtons page={page} setPage={setPage} totalPages={totalPages} />
         </div>

@@ -13,15 +13,17 @@ type SearchFilterProps = {
     sortOrder: "asc" | "desc" | "";
     setFilterValue: React.Dispatch<React.SetStateAction<string>>;
     filterValue: string;
+    searchKey: string;
 }
 
-const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortOrder, setSortProperty, sortProperty, setFilterValue, filterValue }) => {
+const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortOrder, searchKey, setSortProperty, sortProperty, setFilterValue, filterValue }) => {
     const { data } = useGetCategoriesQuery();
 
     const handleReset = () => {
         setSortOrder('');
         setSortProperty('');
         setFilterValue('');
+        setSearchKey('');
     }
     return (
         <div className='flex items-center justify-between'>
@@ -30,7 +32,7 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortO
                     <div className='absolute h-full top-0 w-9 flex items-center justify-center'>
                         <FaSearch className='text-gray-600' />
                     </div>
-                    <Input onChange={(e) => setSearchKey(e.target.value)} className='max-w-[332px] w-full pl-9 pr-3' placeholder='Search' />
+                    <Input value={searchKey} onChange={(e) => setSearchKey(e.target.value)} className='max-w-[332px] w-full pl-9 pr-3' placeholder='Search' />
                 </div>
 
             </div>
@@ -40,7 +42,10 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortO
                     <Button className='h-10 px-6' variant={"outline"} onClick={handleReset}>Reset</Button>
                 }
                 <div className='flex items-center justify-end'>
-                    <Select value={filterValue} onValueChange={(value) => setFilterValue(value)}>
+                    <Select value={filterValue} onValueChange={(value) => {
+                        setFilterValue(value);
+                        setSearchKey('');
+                    }}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Filter by categories" />
                         </SelectTrigger>
@@ -58,6 +63,7 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortO
                     <Select value={sortOrder} onValueChange={(value) => {
                         value == "asc" ? setSortOrder("asc") : setSortOrder("desc");
                         setSortProperty("price");
+                        setSearchKey('');
                     }}>
                         <SelectTrigger className="w-[180px]">
                             <SelectValue placeholder="Filter by Price" />

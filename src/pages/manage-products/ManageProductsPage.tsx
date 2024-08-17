@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import SectionHeader from '../../components/ui/section-header';
 import ProductsTable from './components/ProductsTable/ProductsTable';
 import { useGetProductsQuery } from '../../redux/features/productsApi';
 import AddProductModal from './components/AddProductModal/AddProductModal';
+import PaginationButtons from '../../components/shared/PaginationButtons/PaginationButtons';
 
 const ManageProductsPage: FC = () => {
-
-    const { data, isLoading } = useGetProductsQuery({});
+    const [page, setPage] = useState<number>(1);
+    const { data, isLoading } = useGetProductsQuery({ page });
 
     if (isLoading) return <div>Loading...</div>;
 
@@ -19,7 +20,8 @@ const ManageProductsPage: FC = () => {
             <div className='text-center'>
                 <AddProductModal />
             </div>
-            <ProductsTable products={data?.data?.products} />
+            <ProductsTable page={page} products={data?.data?.products} />
+            <PaginationButtons page={page} setPage={setPage} productsCount={data?.data?.productsCount} />
         </div>
     );
 };

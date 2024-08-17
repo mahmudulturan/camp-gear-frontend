@@ -7,7 +7,7 @@ import { MdDelete } from 'react-icons/md';
 import EditProductModal from '../EditProductModal/EditProductModal';
 import toast from 'react-hot-toast';
 
-const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) => {
+const ProductsTable: FC<{ products: IProduct[] | undefined, page: number }> = ({ products, page }) => {
     const [deleteAProduct] = useDeleteAProductMutation();
     const handleDeleteProduct = (id: string) => {
         deleteAProduct(id).unwrap().then(() => {
@@ -30,7 +30,7 @@ const ProductsTable: FC<{ products: IProduct[] | undefined }> = ({ products }) =
                 <TableBody>
                     {products?.map((product, index) => (
                         <TableRow key={product._id}>
-                            <TableCell>{index + 1}</TableCell>
+                            <TableCell>{index + 1 + (page - 1) * 8}</TableCell>
                             <TableCell className="font-medium"><div className='flex items-center gap-3'>
                                 <img className='size-10 rounded-xl' src={image} alt="" />
                                 <h6>{product.title}</h6>

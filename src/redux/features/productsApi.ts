@@ -40,20 +40,32 @@ interface IResponseGetAProduct {
     data: IProduct;
 }
 
+interface IResponseCategories {
+    success: boolean;
+    message: string;
+    data: string[];
+}
+
 interface IQuery {
     searchKey: string;
-    sortValue: string;
+    sortOrder: string;
+    sortProperty: string;
+    filterValue: string;
     page: number;
 }
 
 const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query<IResponseGetProducts, IQuery>({
-            query: ({ searchKey, sortValue, page }) => `/products?searchKey=${searchKey}&sortValue=${sortValue}&page=${page}&limit=8`,
+            query: ({ searchKey, sortOrder, page, sortProperty, filterValue }) => `/products?searchKey=${searchKey}&filter=${filterValue}&sort=${sortProperty}&order=${sortOrder}&page=${page}&limit=8`,
             providesTags: ['products']
         }),
         getAProduct: builder.query<IResponseGetAProduct, string>({
             query: (id) => (`/products/${id}`),
+            providesTags: ['products']
+        }),
+        getCategories: builder.query<IResponseCategories, void>({
+            query: () => '/products/categories',
             providesTags: ['products']
         }),
         postAProduct: builder.mutation<IResponseGetAProduct, Partial<IProduct>>({
@@ -82,4 +94,4 @@ const productsApi = baseApi.injectEndpoints({
     })
 });
 
-export const { useGetProductsQuery, useGetAProductQuery, usePostAProductMutation, useDeleteAProductMutation, useUpdateAProductMutation } = productsApi;
+export const { useGetProductsQuery, useGetAProductQuery, usePostAProductMutation, useDeleteAProductMutation, useUpdateAProductMutation, useGetCategoriesQuery } = productsApi;

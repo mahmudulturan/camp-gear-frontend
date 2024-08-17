@@ -10,13 +10,18 @@ import Loader from '../../components/shared/Loader/Loader';
 
 const ProductsPage: FC = () => {
     const [page, setPage] = useState<number>(1);
-    const [sortValue, setSortValue] = useState<string>('');
+    const [sortProperty, setSortProperty] = useState<string>('');
+    const [sortOrder, setSortOrder] = useState<"asc" | "desc" | "">("");
+    const [filterValue, setFilterValue] = useState<string>('');
     const [searchKey, setSearchKey] = useState<string>('');
     const [totalPages, setTotalPages] = useState<number>(1);
+
     const query = {
         searchKey,
-        sortValue,
-        page
+        sortOrder,
+        sortProperty,
+        page,
+        filterValue
     }
 
 
@@ -41,7 +46,7 @@ const ProductsPage: FC = () => {
                 <SectionHeader title="All Products" />
                 <p className='text-textGray text-center my-4'>Here is a list of all products</p>
             </div>
-            <SearchFilter setSearchKey={setSearchKey} setSortValue={setSortValue} />
+            <SearchFilter filterValue={filterValue} setSearchKey={setSearchKey} setSortOrder={setSortOrder} setFilterValue={setFilterValue} sortProperty={sortProperty} sortOrder={sortOrder} setSortProperty={setSortProperty} />
             <AllProducts products={data?.data.products} />
             <PaginationButtons page={page} setPage={setPage} totalPages={totalPages} />
         </div>

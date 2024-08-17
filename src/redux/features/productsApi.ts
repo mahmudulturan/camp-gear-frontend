@@ -57,7 +57,7 @@ interface IQuery {
 const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getProducts: builder.query<IResponseGetProducts, IQuery>({
-            query: ({ searchKey, sortOrder, page, sortProperty, filterValue }) => `/products?searchKey=${searchKey}&filter=${filterValue}&sort=${sortProperty}&order=${sortOrder}&page=${page}&limit=8`,
+            query: ({ searchKey = '', sortOrder = '', page = '', sortProperty = '', filterValue = '' }) => `/products?searchKey=${searchKey}&filter=${filterValue}&sort=${sortProperty}&order=${sortOrder}&page=${page}&limit=8`,
             providesTags: ['products']
         }),
         getAProduct: builder.query<IResponseGetAProduct, string>({

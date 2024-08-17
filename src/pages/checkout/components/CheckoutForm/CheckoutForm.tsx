@@ -1,16 +1,61 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { Input } from '../../../../components/ui/input';
 import { Label } from '../../../../components/ui/label';
 import { Button } from '../../../../components/ui/button';
+import { ICartState } from '../../../../redux/features/cart/cartSlice';
 
-const CheckoutForm: FC = () => {
+const CheckoutForm: FC<Partial<ICartState>> = ({ totalItems, totalPrice, items }) => {
+    const [products, setProducts] = useState<{ product: string, quantity: number }[]>([]);
+
+    useEffect(() => {
+        const formatedProducts = items?.map(item => {
+            return {
+                product: item._id,
+                quantity: item.quantity
+            }
+        })
+        if (formatedProducts) {
+            setProducts(formatedProducts);
+        }
+    }, [items])
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        const form = e.target as HTMLFormElement;
+        const name = (form.name as unknown as HTMLInputElement).value;
+        const email = (form.email as unknown as HTMLInputElement).value;
+        const phone = (form.phone as unknown as HTMLInputElement).value;
+        const address = (form.address as unknown as HTMLInputElement).value;
+        const city = (form.city as unknown as HTMLInputElement).value;
+        const state = (form.state as unknown as HTMLInputElement).value;
+        const zip = (form.zip as unknown as HTMLInputElement).value;
+
+        const bookingData = {
+            user: {
+                name,
+                email,
+                phone,
+            },
+            deliveryAddress: {
+                address,
+                city,
+                state,
+                zip
+            },
+            total: totalPrice,
+            products,
+            quantity: totalItems
+        }
+        console.log(bookingData);
+    }
     return (
-        <form className='grid grid-cols-2 gap-3 my-6'>
+        <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-3 my-6'>
             <div className="space-y-2 col-span-2">
                 <Label htmlFor="name" className="text-right font-semibold text-gray-600">
                     Name
                 </Label>
                 <Input
+                    required
                     id="name"
                     placeholder='Enter your name'
                     className=""
@@ -21,6 +66,7 @@ const CheckoutForm: FC = () => {
                     Email
                 </Label>
                 <Input
+                    required
                     id="email"
                     type='email'
                     placeholder='Enter your email'
@@ -32,6 +78,7 @@ const CheckoutForm: FC = () => {
                     Phone
                 </Label>
                 <Input
+                    required
                     id="phone"
                     type='number'
                     placeholder='Enter your phone number'
@@ -43,6 +90,7 @@ const CheckoutForm: FC = () => {
                     Address
                 </Label>
                 <Input
+                    required
                     id="address"
                     placeholder='Enter your address'
                     className=""
@@ -53,6 +101,7 @@ const CheckoutForm: FC = () => {
                     City
                 </Label>
                 <Input
+                    required
                     id="city"
                     placeholder='Enter your city'
                     className=""
@@ -63,6 +112,7 @@ const CheckoutForm: FC = () => {
                     State
                 </Label>
                 <Input
+                    required
                     id="state"
                     placeholder='Enter your state'
                     className=""
@@ -73,6 +123,7 @@ const CheckoutForm: FC = () => {
                     Zip
                 </Label>
                 <Input
+                    required
                     id="zip"
                     placeholder='Enter your zip code'
                     className=""
@@ -83,7 +134,8 @@ const CheckoutForm: FC = () => {
                     Payment Method
                 </Label>
                 <div className='flex gap-2 items-center'>
-                    <input type="checkbox" id='cash_on_delivery' />
+                    <input
+                        required type="checkbox" id='cash_on_delivery' />
                     <label htmlFor="cash_on_delivery">Cash on Delivery</label>
                 </div>
             </div>

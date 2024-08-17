@@ -23,12 +23,7 @@ const ProductsPage: FC = () => {
         filterValue
     }
 
-
     const { data, isLoading } = useGetProductsQuery(query);
-
-
-
-
 
     if (isLoading) return <Loader />;
 
@@ -39,8 +34,16 @@ const ProductsPage: FC = () => {
                 <p className='text-textGray text-center my-4'>Here is a list of all products</p>
             </div>
             <SearchFilter searchKey={searchKey} filterValue={filterValue} setSearchKey={setSearchKey} setSortOrder={setSortOrder} setFilterValue={setFilterValue} sortProperty={sortProperty} sortOrder={sortOrder} setSortProperty={setSortProperty} />
-            <AllProducts products={data?.data.products} />
-            <PaginationButtons page={page} setPage={setPage} productsCount={data?.data.productsCount} />
+            {
+                data?.data.products?.length === 0 ? <div className='min-h-[50vh] flex items-center justify-center my-10'>
+                    <h3 className='text-3xl'>No products found</h3>
+                </div>
+                    :
+                    <>
+                        <AllProducts products={data?.data.products} />
+                        <PaginationButtons page={page} setPage={setPage} productsCount={data?.data.productsCount} />
+                    </>
+            }
         </div>
     );
 };

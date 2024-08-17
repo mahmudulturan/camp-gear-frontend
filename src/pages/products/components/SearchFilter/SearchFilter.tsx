@@ -26,7 +26,7 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortO
         setSearchKey('');
     }
     return (
-        <div className='flex items-center justify-between'>
+        <div className='flex items-center justify-between flex-col md:flex-row gap-2'>
             <div className='flex-1'>
                 <div className='relative'>
                     <div className='absolute h-full top-0 w-9 flex items-center justify-center'>
@@ -36,7 +36,7 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortOrder, setSearchKey, sortO
                 </div>
 
             </div>
-            <div className='flex-1 flex items-center justify-end gap-2'>
+            <div className='flex-1 flex items-center justify-end gap-2 flex-col md:flex-row'>
                 {
                     (filterValue || sortProperty) &&
                     <Button className='h-10 px-6' variant={"outline"} onClick={handleReset}>Reset</Button>

@@ -4,10 +4,11 @@ import { Input } from '../../../../components/ui/input';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '../../../../components/ui/select';
 
 type SearchFilterProps = {
-    setSortValue: React.Dispatch<React.SetStateAction<string>>
+    setSortValue: React.Dispatch<React.SetStateAction<string>>;
+    setSearchKey: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const SearchFilter: FC<SearchFilterProps> = ({ setSortValue }) => {
+const SearchFilter: FC<SearchFilterProps> = ({ setSortValue, setSearchKey }) => {
     return (
         <div className='flex items-center justify-between'>
             <div className='flex-1'>
@@ -15,7 +16,7 @@ const SearchFilter: FC<SearchFilterProps> = ({ setSortValue }) => {
                     <div className='absolute h-full top-0 w-9 flex items-center justify-center'>
                         <FaSearch className='text-gray-600' />
                     </div>
-                    <Input className='max-w-[332px] w-full pl-9 pr-3' placeholder='Search' />
+                    <Input onChange={(e) => setSearchKey(e.target.value)} className='max-w-[332px] w-full pl-9 pr-3' placeholder='Search' />
                 </div>
 
             </div>

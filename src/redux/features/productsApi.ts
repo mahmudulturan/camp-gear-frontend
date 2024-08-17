@@ -30,7 +30,7 @@ interface IResponseGetProducts {
     message: string;
     data: {
         products: IProduct[];
-        totalProducts: number;
+        productsCount: number;
     };
 }
 
@@ -40,11 +40,16 @@ interface IResponseGetAProduct {
     data: IProduct;
 }
 
+interface IQuery {
+    searchKey: string;
+    sortValue: string;
+    page: number;
+}
 
 const productsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getProducts: builder.query<IResponseGetProducts, void>({
-            query: () => '/products',
+        getProducts: builder.query<IResponseGetProducts, IQuery>({
+            query: ({ searchKey, sortValue, page }) => `/products?searchKey=${searchKey}&sortValue=${sortValue}&page=${page}&limit=8`,
             providesTags: ['products']
         }),
         getAProduct: builder.query<IResponseGetAProduct, string>({

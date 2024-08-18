@@ -1,7 +1,6 @@
 import React, { FC, useRef, useState } from 'react';
-import image from '../../../../assets/mock-item-images/product14.1.webp';
 
-const ProductImage: FC = () => {
+const ProductImage: FC<{ image: string }> = ({ image }) => {
     const [showMagnifier, setShowMagnifier] = useState(false);
     const [magnifiedArea, setMagnifiedArea] = useState({ x: 0, y: 0 });
     const imageRef = useRef<HTMLImageElement>(null);

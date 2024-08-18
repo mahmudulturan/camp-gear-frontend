@@ -3,7 +3,7 @@ import image1 from '../../../../assets/slideshow-v1-img1.webp';
 import { Button } from '../../../../components/ui/button';
 const Banner: FC = () => {
     return (
-        <div className=' bg-bgCol'>
+        <div className=' bg-bgCol py-6'>
             <div style={{minHeight: 'calc(100vh - 116px)'}} className='wrapper'>
                 <div style={{minHeight: 'calc(100vh - 116px)'}}  className='flex items-center justify-evenly '>
                     <div  className=''>
@@ -19,17 +19,6 @@ const Banner: FC = () => {
                     </div>
                 </div>
             </div>
-            
-            {/* <div className='grid grid-cols-2 gap-6 my-10'>
-                <div className='bg-bgCol flex items-center justify-center px-10 py-10'>
-                    <p>Up To 40% Off</p>
-                    <h4>Fleece Gloves</h4>
-                </div>
-                <div className='bg-bgCol flex items-center justify-center px-10 py-10'>
-                    <p>Flat 30%</p>
-                    <h4>Special Chair</h4>
-                </div>
-            </div> */}
         </div>
     );
 };

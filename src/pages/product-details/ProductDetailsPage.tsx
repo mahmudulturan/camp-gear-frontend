@@ -1,20 +1,38 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { useGetAProductQuery } from '../../redux/features/productsApi';
+import { IProduct, useGetAProductQuery } from '../../redux/features/productsApi';
 import Loader from '../../components/shared/Loader/Loader';
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 import { Button } from '../../components/ui/button';
 import ProductImage from './components/ProductImage/ProductImage';
+import toast from 'react-hot-toast';
+import { addToCart } from '../../redux/features/cart/cartSlice';
+import { useAppSelector, useAppDispatch } from '../../redux/hook';
 
 const ProductDetailsPage: FC = () => {
     const { id } = useParams();
     const { data, isLoading } = useGetAProductQuery(id as string);
+    const { items } = useAppSelector(state => state.cart)
+    const dispatch = useAppDispatch()
+
+
+    const isExist = items.find(item => item._id === id) || {
+        quantity: 0
+    };
+
+    const handleAddToCart = () => {
+        if (isExist?.quantity > (data?.data?.inventory?.quantity as number) - 1) {
+            return toast.error("Stock quantity exceeded");
+        }
+        dispatch(addToCart(data?.data as IProduct));
+        toast.success("Product added to cart")
+    }
     if (isLoading) return <Loader />
     return (
         <div className='wrapper my-20'>
             <div className='flex flex-col md:flex-row items-center justify-center gap-6'>
-                <ProductImage />
+                <ProductImage image={data?.data.image || ''} />
                 <div>
                     <div className='space-y-2 mb-10'>
                         <h1 className='text-3xl font-semibold'>{data?.data.title}</h1>
@@ -34,7 +52,9 @@ const ProductDetailsPage: FC = () => {
                         <p><span className='font-medium text-lg'>Availability:</span> <span className='text-textGray font-medium'>{data?.data.inventory.inStock ? 'In Stock' : 'Out of Stock'}</span></p>
                     </div>
                     <div className='my-6'>
-                        <Button variant={"reverse"}>Add to cart</Button>
+                        <Button variant={"reverse"} disabled={!data?.data.inventory.inStock} onClick={handleAddToCart}>
+                            {data?.data.inventory.inStock ? 'Add to cart' : 'Out of stock'}
+                        </Button>
                     </div>
                 </div>
             </div>

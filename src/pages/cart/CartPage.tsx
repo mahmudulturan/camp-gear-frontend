@@ -1,6 +1,5 @@
 import { FC } from 'react';
 import SectionHeader from '../../components/ui/section-header';
-import image from '../../assets/mock-item-images/product14.1.webp';
 import { Button } from '../../components/ui/button';
 import { LuPlus, LuMinus } from "react-icons/lu";
 import { RiDeleteBin6Line } from "react-icons/ri";
@@ -42,7 +41,7 @@ const CartPage: FC = () => {
                                             <div>
                                             </div>
                                             <div className='h-[100px] bg-[#EFEDEE]'>
-                                                <img src={image} className='h-[100px]' alt="" />
+                                                <img src={item.image} className='h-[100px]' alt="" />
                                             </div>
                                             <div>
                                                 <h1 className='font-semibold text-xl'>{item.title}</h1>

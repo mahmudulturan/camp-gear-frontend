@@ -1,7 +1,6 @@
 import { FC } from 'react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '../../../../components/ui/table';
 import { IProduct } from '../../../../redux/features/productsApi';
-import image from '../../../../assets/mock-item-images/product12_5ad78891-a8aa-4fbf-868e-91c6a471d073.webp';
 import EditProductModal from '../EditProductModal/EditProductModal';
 import DeleteModal from '../DeleteModal/DeleteModal';
 
@@ -25,7 +24,7 @@ const ProductsTable: FC<{ products: IProduct[] | undefined, page: number }> = ({
                         <TableRow key={product._id}>
                             <TableCell>{index + 1 + (page - 1) * 8}</TableCell>
                             <TableCell className="font-medium"><div className='flex items-center gap-3'>
-                                <img className='size-10 rounded-xl' src={image} alt="" />
+                                <img className='size-10 rounded-xl' src={product.image} alt="" />
                                 <h6>{product.title}</h6>
                             </div></TableCell>
                             <TableCell className='w-[300px]'>{product.category}</TableCell>

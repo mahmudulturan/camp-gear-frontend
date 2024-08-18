@@ -84,7 +84,7 @@ const Footer: FC = () => {
                     </div>
                 </div>
 
-                <div className='flex flex-col items-center md:items-start justify-center md:justify-start lg:min-w-72'>
+                <div className='flex flex-col items-center md:items-start justify-center md:justify-start lg:min-w-72 mx-auto'>
                     <h6 className='uppercase font-bold text-sm'>SUBSCRIBE TO OUR NEWSLETTER</h6>
                     <div className='space-y-3 my-3 w-full text-center md:text-left'>
                         <Input className='w-full' placeholder="Enter your email" type="email" />

@@ -43,7 +43,7 @@ const CartPage: FC = () => {
                                             </div>
                                             <div>
                                                 <h1 className='font-semibold text-xl'>{item.title}</h1>
-                                                <p className='text-textGray'>{item.description}</p>
+                                                <p className='text-textGray'>{item.description.slice(0, 100)}...</p>
                                             </div>
                                         </div>
                                         <div>

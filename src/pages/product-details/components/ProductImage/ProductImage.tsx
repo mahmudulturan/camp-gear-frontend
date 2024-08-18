@@ -54,7 +54,7 @@ const ProductImage: FC<{ image: string }> = ({ image }) => {
             <div className='hidden md:block'>
                 <div
                     hidden={!showMagnifier}
-                    className='max-w-[300px] lg:max-w-[400px] w-full max-h-[500px] h-full overflow-hidden absolute -right-6 top-0 translate-x-full z-10'>
+                    className='max-w-[300px] lg:max-w-[400px] w-full max-h-[500px] h-full overflow-hidden absolute -right-6 top-0 translate-x-full z-10 bg-white'>
                     <div
                         style={{
                             width: '100%',

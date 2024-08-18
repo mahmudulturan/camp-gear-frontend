@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../redux/hook';
 import { addToCart } from '../../../redux/features/cart/cartSlice';
 import toast from 'react-hot-toast';
+import { IoIosStar } from 'react-icons/io';
 
 
 
@@ -26,6 +27,9 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
         <div className='group'>
             <div className='bg-[#EFEDEE] relative overflow-hidden cursor-pointer w-[334px] h-[339px]'>
                 <img src={product.image} alt={product?.title} className='object-cover  w-[334px] h-[339px] border' />
+                <div className='absolute top-0 right-0 px-3 py-2 flex items-center gap-1 text-primary'>
+                    <IoIosStar className='size-4' /> <span className='font-medium'>{product?.rating.rate.toFixed(1)}</span>
+                </div>
                 <Link to={`/products/${product?._id}`}>
                     <button className='w-full text-center hover:text-primary border bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 left-0'>View Details</button>
                 </Link>

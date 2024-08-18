@@ -27,7 +27,7 @@ const ProductCard: FC<{ product: IProduct }> = ({ product }) => {
             <div className='bg-[#EFEDEE] relative overflow-hidden cursor-pointer w-[334px] h-[339px]'>
                 <img src={product.image} alt={product?.title} className='object-cover  w-[334px] h-[339px] border' />
                 <Link to={`/products/${product?._id}`}>
-                    <button className='w-full text-center hover:text-primary bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 left-0'>View Details</button>
+                    <button className='w-full text-center hover:text-primary border bg-white py-2 font-semibold absolute bottom-0 translate-y-full group-hover:translate-y-0 origin-bottom transition-all duration-300 left-0'>View Details</button>
                 </Link>
             </div>
             <div className='mt-4'>

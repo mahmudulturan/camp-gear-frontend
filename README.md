@@ -1,30 +1,61 @@
-# React + TypeScript + Vite
+# Camp Gear Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the frontend repository of the **Camp Gear** project! This React-based web application is designed to provide a seamless and engaging shopping experience for camping enthusiasts. It offers a responsive, user-friendly interface that allows customers to browse products, manage their carts, and complete purchases effortlessly.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Homepage:** Showcases featured products, best-sellers, and categories with an intuitive and attractive layout.
+- **Product Listings:** Displays products with filtering and sorting options, allowing users to find exactly what they need.
+- **Product Details:** Provides detailed information about each product, including images, descriptions, ratings, and availability.
+- **Shopping Cart:** Users can add items to their cart, adjust quantities, and proceed to checkout with ease.
+- **Checkout:** Secure checkout process with support for multiple payment methods (e.g., Cash on Delivery, Stripe).
+- **Responsive Design:** Optimized for viewing on desktops, tablets, and smartphones.
+- **State Management:** Utilizes Redux for managing the application state, ensuring a consistent user experience.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **React:** JavaScript library for building user interfaces.
+- **Redux:** State management for predictable and efficient state updates.
+- **React Router:** Handles navigation between pages.
+- **Axios:** For making HTTP requests to the backend API.
+- **Styled Components:** For styling components with a modular and reusable approach.
 
-- Configure the top-level `parserOptions` property like this:
+## Getting Started
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+### Prerequisites
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Node.js and npm installed
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mahmudulturan/camp-gear-frontend
+   cd camp-gear-frontend
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+    ```
+
+3. Set up environment variables:
+    - Create a .env file in the root directory and define the following variables:
+   ```bash
+   VITE_SERVER_BASE_URL=http://exampleurl/api
+   VITE_IMGBBAPIKEY=*************************
+   ```
+
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request for any changes you'd like to make.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/YourFeature`)
+3. Commit your changes (`git commit -am 'Add some feature'`)
+4. Push to the branch (`git push origin feature/YourFeature`)
+5. Create a new Pull Request

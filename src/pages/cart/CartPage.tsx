@@ -2,18 +2,16 @@ import { FC } from 'react';
 import SectionHeader from '../../components/ui/section-header';
 import { Button } from '../../components/ui/button';
 import { LuPlus, LuMinus } from "react-icons/lu";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/hook';
-import { decreaseQuantity, increaseQuantity, removeFromCart } from '../../redux/features/cart/cartSlice';
+import { decreaseQuantity, increaseQuantity } from '../../redux/features/cart/cartSlice';
 import toast from 'react-hot-toast';
+import DeleteCartModal from './components/DeleteCartModal/DeleteCartModal';
 
 const CartPage: FC = () => {
     const { items, totalPrice } = useAppSelector(state => state.cart);
     const dispatch = useAppDispatch();
-    const handleDeleteFromCart = (id: string) => {
-        dispatch(removeFromCart({ _id: id }));
-    }
+
     const handleIncreaseQuantity = (id: string, current_quantity: number, stock_quantity: number) => {
         if (current_quantity > stock_quantity - 1) {
             return toast.error("Stock quantity exceeded");
@@ -59,8 +57,7 @@ const CartPage: FC = () => {
                                             </div>
                                             <div className='flex items-center justify-between'>
                                                 <h6 className='text-lg font-bold'>${item.price.amount}</h6>
-                                                <Button onClick={() => handleDeleteFromCart(item._id)} variant={"outline"} size={"icon"}> <RiDeleteBin6Line className='size-4' />
-                                                </Button>
+                                                <DeleteCartModal id={item._id} />
                                             </div>
                                         </div>
                                     </div>
